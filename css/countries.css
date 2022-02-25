@@ -1,5 +1,14 @@
+#countries{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
 .country{
     border: 3px solid tomato;
     margin: 20px 5px;
     padding: 5px 10px;
+    border-radius: 10px;
+    text-align: center;
+}
+.country h3{
+    color: green;
 }
