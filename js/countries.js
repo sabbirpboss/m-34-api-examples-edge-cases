@@ -22,3 +22,4 @@ const displayCountries = (countries) => {
         countriesDiv.appendChild(div);
     });
 }
+
