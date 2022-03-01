@@ -6,17 +6,18 @@ const searchFood = () => {
   //clear search field data
   searchField.value = "";
   //error handling
-  if(searchText == ''){
-      //please write something in search field
-  }
-  //set the url with https and make it *dynamic
-  const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchText}`;
+  if (searchText == "") {
+    alert("please write something in search field");
+  } else {
+    //set the url with https and make it *dynamic
+    const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchText}`;
 
-  // console.log(url);
-  //fetch the url and convert to json
-  fetch(url)
-    .then((res) => res.json())
-    .then((data) => displaySearchResult(data.meals));
+    // console.log(url);
+    //fetch the url and convert to json
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => displaySearchResult(data.meals));
+  }
 };
 
 //display search result function
@@ -24,10 +25,10 @@ const displaySearchResult = (meals) => {
   // console.log(meals);
   const searchResult = document.getElementById("search-result");
   //clear all search result data
-  searchResult.textContent = '';
+  searchResult.textContent = "";
   //error handling
-  if(meals.length == 0){
-      //show here no result found
+  if (meals.length == 0) {
+    //show here no result found
   }
   meals.forEach((meal) => {
     // console.log(meal);
@@ -70,9 +71,9 @@ const loadMealDetail = (mealId) => {
 //display meal detail by id
 const displayMealDetail = (meal) => {
   console.log(meal);
-  const mealDetails = document.getElementById('meal-details');
-  const div = document.createElement('div');
-  div.classList.add('card');
+  const mealDetails = document.getElementById("meal-details");
+  const div = document.createElement("div");
+  div.classList.add("card");
   div.innerHTML = `
     <img src="${meal.strMealThumb}" class="card-img-top" alt="...">
     <div class="card-body">
@@ -81,5 +82,10 @@ const displayMealDetail = (meal) => {
       <a href="${meal.strYoutube}" class="btn btn-primary">Go somewhere</a>
     </div>
     `;
-    mealDetails.appendChild(div);
+  mealDetails.appendChild(div);
 };
+
+/* 
+    //clear all search result data
+    mealDetails.innerHTML = "";
+*/
