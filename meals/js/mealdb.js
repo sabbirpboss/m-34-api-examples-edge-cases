@@ -3,8 +3,12 @@ const searchFood = () => {
   //get input value
   const searchText = searchField.value;
   // console.log(searchText);
-  //do search field empty
+  //clear search field data
   searchField.value = "";
+  //error handling
+  if(searchText == ''){
+      //please write something in search field
+  }
   //set the url with https and make it *dynamic
   const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchText}`;
 
@@ -19,6 +23,12 @@ const searchFood = () => {
 const displaySearchResult = (meals) => {
   // console.log(meals);
   const searchResult = document.getElementById("search-result");
+  //clear all search result data
+  searchResult.textContent = '';
+  //error handling
+  if(meals.length == 0){
+      //show here no result found
+  }
   meals.forEach((meal) => {
     // console.log(meal);
     const div = document.createElement("div");
@@ -37,6 +47,17 @@ const displaySearchResult = (meals) => {
 };
 
 // get meal detail by meal id
+//async await function method(alternative fetch)
+const loadMealDetail = async (mealId) => {
+  // console.log(mealID);
+  const url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`;
+
+  const res = await fetch(url);
+  const data = await res.json();
+  displayMealDetail(data.meals[0]);
+};
+/* 
+// get meal detail by meal id
 const loadMealDetail = (mealId) => {
   // console.log(mealID);
   const url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`;
@@ -44,6 +65,7 @@ const loadMealDetail = (mealId) => {
     .then((res) => res.json())
     .then((data) => displayMealDetail(data.meals[0]));
 };
+ */
 
 //display meal detail by id
 const displayMealDetail = (meal) => {
